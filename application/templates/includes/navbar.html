@@ -1,0 +1,34 @@
+
+<header>
+	<nav>
+		<ul class="nav-line">
+			{% if session.get('dept')=='admin'%}
+			<li class="nav-item"><a href="{{url_for('viewStaff')}}" > Staff</a>
+				<ul class="nav-item-l1">
+					<li > <a href=" {{url_for('register_staff')}} " >New Staff</a></li>
+					<li > <a href=" {{url_for('viewStaff')}} " >View all Staff</a></li>
+				</ul>
+			</li>
+			{% endif %}
+			{% if session['dept']=='reception'%}
+			<li class="nav-item"><a href="{{url_for('reception')}}" >Patient</a>
+				<ul class="nav-item-l1">
+					<li > <a href=" {{url_for('newPatient')}} " >New Patient</a></li>
+					<li > <a href="{{url_for('updatePatient')}} " >Update Patient Details </a></li>
+					<li > <a href="{{url_for('delPatient')}} " >Delete Patient </a></li>
+					<li > <a href="{{url_for('viewAll')}}" >View All Patient</a></li>
+					<li > <a href="{{url_for('searchPatient')}} " >Search Patient </a></li>
+					<li > <a href="{{url_for('patientbill')}}" >Patient Bill </a></li>
+				</ul>
+			</li>
+			{% endif %}
+			{% if session['dept']=='pharmacy' %}
+			<li class="nav-item"><a href="{{ url_for('pharmacyDetails')}}">Pharmacy</a></li>
+			{% endif %}
+			{% if session['dept']=='diagnosis'%}
+			<li class="nav-item"><a href="{{ url_for('diagnostics')}}">Diagnostics</a></li>
+			{% endif %}
+			<li class="nav-item"><a href="{{ url_for('logout') }}">Logout</a>
+		</ul>
+	</nav>
+</header>

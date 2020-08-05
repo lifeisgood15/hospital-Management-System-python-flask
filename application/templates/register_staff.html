@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{%block content %}
+{% if session['userId'] and session['dept']=='admin' %}
+
+
+<div class="staff details">
+<br><h3>Staff Registration</h3>
+<form name="register_staff" action="" method="post" novalidate>
+  {{ form.hidden_tag() }}
+    <br><label>{{ form.staffSSNID.label }}</label>
+    {{ form.staffSSNID(placeholder="###-##-####") }}
+				{% for error in form.staffSSNID.errors %}
+					<span class="error-message">{{ error }}<br></span>
+                {% endfor %}
+    <br><label>{{ form.staffId.label }}</label>
+    {{ form.staffId}}
+				{% for error in form.staffId.errors %}
+					<span class="error-message">{{ error }}<br>/span>
+				{% endfor %}
+    
+    <br><label>{{ form.staffName.label }}</label>
+    {{ form.staffName }}
+				{% for error in form.staffName.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+    <br><label>{{ form.staffDob.label }}</label>
+    {{ form.staffDob }}
+				{% for error in form.staffDob.errors %}
+					<span class="error-message">{{ error }}</span>
+                {% endfor %}
+
+    <br><label>{{ form.staffDoj.label }}</label>
+    {{ form.staffDoj }}
+				{% for error in form.staffDoj.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+    <br><label>{{ form.staffDept.label }}</label>
+    {{ form.staffDept }}
+				{% for error in form.staffDept.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+    <br><label>{{ form.staffAddress.label }}</label>
+    {{ form.staffAddress }}
+				{% for error in form.staffAddress.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+    <br><label>{{ form.staffPhone.label }}</label>
+    {{ form.staffPhone }}
+				{% for error in form.staffPhone.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+    <br><label>{{ form.staffPassword.label }}</label>
+    {{ form.staffPassword }}
+				{% for error in form.staffPassword.errors %}
+					<span class="error-message">{{ error }}<br></span>
+                {% endfor %}
+    <br><label>{{ form.confirm.label }}</label>
+    {{ form.confirm }}
+				{% for error in form.confirm.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+    
+    <br>{{ form.staffRegister() }}
+    <input type="reset" value="Reset" >
+  </form>
+  {% for error in form.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+{% else %}
+<div class="alert-alert-danger">
+	<p> <a href="{{ url_for('login') }}" >Please contact admin </a>
+	<br>Note: Only admin can add new staff members</p>
+  </div>
+{% endif %}
+{% endblock %}

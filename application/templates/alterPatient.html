@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{%block content %}
+{% if session['userId'] and session['dept']=='reception' %}
+<h3>{{ title }}</h3>
+<div class="PatientDetails">
+<form name="Patient" action="" method="POST" novalidate>
+  {{ form.hidden_tag() }}
+    <br><label>{{ form.patientId.label }}</label>
+    {{ form.patientId }}
+				{% for error in form.patientId.errors %}
+					<span class="error-message">{{ error }}</span>
+                {% endfor %}
+    <span class="btn-smol">{{ form.getDetails() }}</span>
+                
+    <br><label>{{ form.patientName.label }}</label>
+    {{ form.patientName }}
+				{% for error in form.patientName.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+    <br><label>{{ form.patientAge.label }}</label>
+    {{ form.patientAge }}
+				{% for error in form.patientAge.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+    <br><label>{{ form.dateAdmission.label }}</label>
+    {{ form.dateAdmission }}
+				{% for error in form.dateAdmission.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+    <br><label>{{ form.bed.label }}</label>
+    {{ form.bed }}
+				{% for error in form.bed.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+    <br><label>{{ form.patientAddress.label }}</label>
+    {{ form.patientAddress }}
+				{% for error in form.patientAddress.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+    <br><label>{{ form.city.label }}</label>
+    {{ form.city }}
+				{% for error in form.city.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+    <br><label>{{ form.state.label }}</label>
+    {{ form.state }}
+				{% for error in form.state.errors %}
+					<span class="error-message">{{ error }}</span>
+                {% endfor %}
+    {% if update %}
+    <br>{{ form.updatePatient() }}
+    {% elif delete %}
+    <br>{{ form.deletePatient() }}
+    {% endif %}
+    
+  </form>
+  {% else %}
+  <div class="alert-alert-danger">
+      <p> <a href="{{ url_for('login') }}" >Please Login First </a>
+      <br>Note: Only Registration/Admission desk executive  can  manage patient details</p>
+    </div>
+  {% endif %}
+
+{% endblock %}

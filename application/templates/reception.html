@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{%block content %}
+{% if session['userId'] and session['dept']=='reception' %}
+<h3>{{title }}</h3>
+
+<h3><a href=" {{url_for('newPatient')}} " >New Patient</a></h3>
+<h3><a href="{{url_for('updatePatient')}} " >Update Patient Details </a></h3>
+<h3><a href="{{url_for('delPatient')}} " >Delete Patient </a></h3>
+<h3><a href="{{url_for('viewAll')}}" >View All Patient</a></h3>
+<h3><a href="{{url_for('searchPatient')}} " >Search Patient </a></h3>
+<h3><a href="{{url_for('patientbill')}}" >Patient Bill </a></h3>
+
+{% else %}
+<div class="alert-alert-danger">
+	<p> <a href="{{ url_for('login') }}" >Please Login First </a>
+	<br>Note: Only Registration/Admission desk executive  can  manage patient details</p>
+  </div>
+{% endif %}
+{% endblock %}

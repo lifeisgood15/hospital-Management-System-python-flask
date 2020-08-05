@@ -1,0 +1,279 @@
+
+*{
+	box-sizing: border-box;
+	padding:0;
+	margin:0;
+	position: relative;
+}
+html, body{
+	text-align: center;
+	height:100%;
+	width:100%;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	line-height: 5vh;
+	
+
+}
+header{
+	text-align: center;
+	width: 100%;
+	
+}
+li{
+	list-style: none;
+	border: solid #f2f2f2;
+	border-width: 0.01vw;
+	
+}
+nav{
+	width:100%;
+	font-size: 1.5vw;
+	overflow: visible;
+	z-index: 1;
+}
+a{
+	text-decoration: none;
+	color: white;
+}
+a:hover{
+	text-decoration: underline white;
+	color: whitesmoke;
+}
+.nav-line{
+	margin:0;
+}
+.nav-line li {
+	float:left;
+	width:50%;
+	color:white;
+	padding: 0.5vh;
+	background: rgb(86, 132, 190);
+}
+.nav-item-l1 {
+	display:none;
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	margin-top: 0.5vh;
+	
+}
+.nav-item-l1 li {
+	width: 100%;
+	padding: 0.5vh;
+	
+	
+}
+.nav-line li:hover .nav-item-l1 {
+	display: grid;
+	align-self: center;
+	width: 100%;
+	
+	
+}
+
+p{
+	font-size: 1vw;
+}
+
+.last-line img{
+	height: 5%;
+	width: auto;
+}
+
+h2{
+	font-size: 3vw;
+	font-family:'Times New Roman', Times, serif ;
+	font-weight: lighter;
+	
+}
+.banner{
+			width: 100%;
+			height:5rem;
+			padding: 0.5rem;
+			left: 0;
+			color: white;
+			text-align: center;
+			background-color:rgb(86, 132, 190); 
+
+		}
+.login{
+			font-size: 2vh;
+			padding: 1vh;
+			background-color: #f0f0f0;
+			display: inline-block;
+  			width: 100%;
+}
+
+.PatientDetails{
+			background-color: #f0f0f0;
+			padding: 1vw;
+			display: inline-block;
+  			width: 100%;
+			
+		}
+
+h3{
+			font-size: 2vw;
+			color: rgb(86, 132, 190);
+			font-weight: lighter;
+		}
+h5{
+	font-size: 1.5vw;
+	color: rgb(86, 132, 190);
+}
+html body div.container h3 a{
+	
+	padding: 1vw;
+	font-size: 2vw;
+	width: 60%;
+	margin-left: 20%;
+	background-color:lightsteelblue;
+	display: block;
+	margin-top: 2vh;
+}
+
+input,select,textarea{
+			height: auto;
+			width:20vw;
+			font-size: 1.5vw;
+			color: rgb(86, 132, 190);
+			border-color: lightsteelblue;
+			text-align: center;
+			margin: 0.5vw;
+			outline: none;
+			left: 2vw; 
+			vertical-align: 10%;
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus{
+		    background-color: #f2f2f2;
+		    outline: none;
+}
+label{
+			font-size: 1.5vw;
+			width:20vw;
+			display: inline-block;
+			margin-bottom: .5rem;
+			font-weight: 400;
+			line-height: 1.5;
+		}
+input[type="submit"],input[type="reset"]{
+			background-color: rgb(86, 132, 190);
+		    color: white;
+		    padding: 1vh 2vw;
+		    margin: 2vh 0;
+		    border: none;
+		    font-size: 2vw;
+		    cursor: pointer;
+		    width: 30%;
+		    opacity: 0.9;
+}
+.container{
+	margin-top: 10vh;
+	margin-bottom: 10%;
+	background-color: rgb(202, 218, 240);
+	color:rgb(86, 132, 190) ;
+
+}
+.alert-alert-danger p{
+	background-color:lightsalmon;
+	padding:3vh 1vw;
+	width: 70%;
+	margin-left: 15%;
+	color:white;
+	font-size: 1vw;
+	margin-top: 1vh;
+
+}
+.alert-alert-success p{
+	background-color:rgb(14, 201, 191);
+	padding:3vh 1vw;
+	margin-top: 1vh;
+	width: 70%;
+	margin-left: 15%;
+	color:white;
+	font-size: 1vw;
+
+}
+
+.btn-smol input[type="submit"]{
+	background-color: rgb(86, 132, 190);
+	color: white;
+	padding: 0.5vh 0.5vw;
+	border: none;
+	font-size: 2vw;
+	cursor: pointer;
+	width: 5%;
+	opacity: 0.9;
+	border-radius: 1vw;
+	margin-right: -10vw;
+}
+span.error-message{
+    color: tomato;
+	float: right;
+	position: absolute;
+	margin: 3vh 5vh;
+	font-size: small;
+}
+
+tr:nth-child(odd) {
+	background-color: #f0f0f0;
+  }
+  
+  html body div.container div form table {
+	  width: 90%;
+	  border-collapse:collapse;
+	  margin: auto;
+	  
+	  border: 0.3vw solid lightsteelblue;
+	  table-layout: fixed;
+  }
+  html body div.container div form table td{
+	  width: 90%;
+	  border: 1px solid lightsteelblue;
+	  table-layout: fixed;
+	  font-size: 1.25vw;
+  }
+  
+  html body div.container div form table tbody tr td textarea {
+	   width: 80%;
+	  	margin-left: -0.2vw;
+		float: left;
+		height: auto;
+  }
+  html body div.container div form table thead tr th{
+	color: lightsteelblue;
+	font-size: 1.25vw;
+}
+  
+  html body div.container div form table tbody tr td select {
+	  width: 80%;
+	  fill-rule: evenodd;
+	  margin-left: -1vw;
+		float: left;
+  }
+  html body div.container div form table tbody tr td input {
+	 width: 90%;
+	  float: left;
+	  height: auto;
+	  margin-left: -1vw;
+  }
+ 
+  .bill{
+	  display: none;
+  }
+  @page { size: A5; margin: 1cm }
+  @media print {
+	input[type="submit"]{
+		  display: none;
+	  }
+	  nav{
+		  display: none;
+	  }
+	  body{
+		  background-color: rgb(86, 132, 190) !important;
+		  -webkit-print-color-adjust: exact; 
+	  }
+	  .bill{
+		  display: block;
+	  }
+  }

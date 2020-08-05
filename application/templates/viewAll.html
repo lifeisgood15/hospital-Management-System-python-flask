@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}"/>
+{% extends "layout.html" %}
+{%block content %}
+{% if session['userId'] and session['dept']=='reception'%}
+<h3>{{ title }}</h3>
+
+<div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Patient ID</th>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Patient Age</th>
+            <th scope="col">Date of Admission</th>
+            <th scope="col">Bed</th>
+            <th scope="col">Address</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        
+        {% for data in all_patients %}
+        <tr>
+            <td scope='row'>{{ data["patientId"]}}</td>
+            <td>{{ data["patientName"]}}</td>
+            <td>{{ data["patientAge"]}}</td>
+            <td>{{ data["dateAdmission"].date()}}</td>
+            <td>{{ data.getBed(data["bed"]) }}</td>
+            <td>{{ data["patientAddress"]}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="alert-alert-danger">
+    <p> <a href="{{ url_for('login') }}" >Please Login First </a>
+    <br>Note: Only Registration/Admission desk executive  can  manage patient details</p>
+  </div>
+{% endif %}
+{% endblock %}

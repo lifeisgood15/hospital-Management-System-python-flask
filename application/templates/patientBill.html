@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if session['userId'] and session['dept']=='reception' %}
+<script>
+    function getpdf(){
+        window.print()
+    }
+</script>
+
+<h3>{{ title }}</h3>
+<div>
+    <form name="Patient" action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <table >
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Patient ID</th>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Patient Age</th>
+            <th scope="col">Address</th>
+            <th scope="col">Date of Admission</th>
+            <th scope="col">Bed</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td >{{ form.getDetails() }}</td>
+                <td>{{ form.patientId }}</td>
+                <td>{{ form.patientName }}</td>
+                <td>{{ form.patientAge }}</td>
+                <td>{{ form.patientAddress }}</td>
+                <td>{{ form.dateAdmission }}</td>
+                <td>{{ form.bed }}</td>
+
+            </tr>
+            {% if flag==1 %}
+            <tr> 
+                <td><h5>Days :</h5> </td>
+                <td colspan="2"><h5>{{room['days']}}</h5</td>
+                <td><h5>Room expenses : </h5></td>
+                <td colspan="3"><h5>{{room['cost']}}</h5></td>
+            </tr>
+        </tbody>
+        </table>
+
+    <h3>Medicines Issued</h3>
+        <table >
+            <thead>
+            <tr>
+                <th scope="col">Medicine Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Rate</th>
+                <th scope="col">Amount</th>
+            </tr>
+            </thead>
+            {% for data in medicines %}
+            <tbody>
+                <tr>
+                    <td scope='row'>{{ data["medName"]}}</td>
+                    <td>{{ data["qty"]}}</td>
+                    <td>{{ data["rate"]}}</td>
+                    <td>{{ data["amount"]}}</td>
+
+                </tr>
+                {% endfor %}
+            <tr>
+                
+                <td colspan="2"><h5>Bill for medicines: </h5> </td>
+                <td colspan="2"><h5>{{mbill}}<h5></td>
+                </tr>
+            </tbody>
+            
+        </table>
+<h3>Diagnosis Issued</h3>
+<table >
+    <thead>
+    <tr>
+        <th scope="col">Test Name</th>
+        <th scope="col">Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for data in diagnosis %}
+    
+        <tr>
+            <td scope='row'>{{ data["testName"]}}</td>
+            <td>{{ data["amount"]}}</td>
+
+        </tr>
+        
+    {% endfor %}
+    <tr><td><h5>Bill for Tests :</h5></td> <td><h5>{{tbill}}</h5></td></tr>
+    </tbody>
+</table>
+<h3>Grand Total :{{totalCost}}</h3>
+{{ form.getBill()}} 
+{{ form.printBill()}}
+<div class="bill">
+    <h5>Date and Time : {{ datenow}} <br>                   Staff ID : {{session['userId']}}<br></h5>
+    <h3>Sign:________________________________ <br></h3>
+</div>
+{% endif %}
+</form>
+</div>
+
+{% else %}
+    <div class="alert-alert-danger">
+        <p> <a href="{{ url_for('login') }}" >Please Login First </a>
+        <br>Note: Only Registration/Admission desk executive  can  manage patient details</p>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}"/>
+</head>
+<body>
+    <div class="banner" id="banner"><h2>Hospital</h2></div>
+    {% if session['userId'] %}
+        {% include "includes/navbar.html" %}
+    {% endif %}
+    
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert-alert-{{category}}">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}
+        {% endblock %}
+    </div>
+    
+</body>
+</html>    
+    

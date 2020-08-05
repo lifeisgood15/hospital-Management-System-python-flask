@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if session['userId'] and session['dept']=='diagnosis' %}
+<h3>Patient Details</h3>
+<div>
+    <form>
+    <table >
+        <thead>
+        <tr>
+            <th scope="col">Patient ID</th>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Patient Age</th>
+            <th scope="col">Address</th>
+            <th scope="col">Date of Admission</th>
+            <th scope="col">Bed</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ data["patientId"]}}</td>
+                <td>{{ data["patientName"]}}</td>
+                <td>{{ data["patientAge"]}}</td>
+                <td>{{ data["patientAddress"]}}</td>
+                <td>{{ data["dateAdmission"].date()}}</td>
+                <td>{{ data.getBed(data["bed"]) }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h3>Diagnosis Issued</h3>
+    <table >
+        <thead>
+        <tr>
+            <th scope="col">Test Name</th>
+        
+            
+            <th scope="col">Amount</th>
+        </tr>
+        </thead>
+        {% for data in diagnosis %}
+        <tbody>
+            <tr>
+                <td scope='row'>{{ data["testName"]}}</td>
+                
+                <td>{{ data["amount"]}}</td>
+
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</form>
+</div>
+<h3>ADD new Diagnosis </h3>
+<div>
+    <form name="issue_medicine" action="" method="post" novalidate>
+        {{ form_med.hidden_tag() }}
+<table>        
+    <thead>
+        <tr>
+            <th scope="col">Test Name</th>
+            <th scope="col">Amount</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+        {% if form_med.testName.errors %}
+            <td>{{ form_med.testName(placeholder= form_med.testName.errors )}}</td>
+        {% else %}
+           <td>{{ form_med.testName }}</td>
+        {% endif %}                
+            <td>{{ form_med.amount }}</td>
+            <td>{{ form_med.getRate() }}</td>
+            <td>{{ form_med.addTest() }}</td>
+        </tr>
+    </tbody>
+</table>
+{{form_med.update()}}
+</form>
+</div>
+{% else %}
+<div class="alert-alert-danger">
+    <p> <a href="{{ url_for('login') }}" >Please Login First </a>
+    <br>Note: Only Diagnostic services executive can  manage the diagnostic services</p>
+  </div>
+{% endif %}
+{% endblock %}

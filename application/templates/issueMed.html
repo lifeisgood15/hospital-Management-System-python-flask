@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if session['userId'] and session['dept']=='pharmacy' %}
+<h3>Patient Details</h3>
+<div>
+    <form>
+    <table >
+        <thead>
+        <tr>
+            <th scope="col">Patient ID</th>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Patient Age</th>
+            <th scope="col">Address</th>
+            <th scope="col">Date of Admission</th>
+            <th scope="col">Bed</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ data["patientId"]}}</td>
+                <td>{{ data["patientName"]}}</td>
+                <td>{{ data["patientAge"]}}</td>
+                <td>{{ data["patientAddress"]}}</td>
+                <td>{{ data["dateAdmission"].date()}}</td>
+                <td>{{ data.getBed(data["bed"]) }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h3>Medicines Issued</h3>
+        <table >
+            <thead>
+            <tr>
+                <th scope="col">Medicine Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Rate</th>
+                <th scope="col">Amount</th>
+            </tr>
+            </thead>
+            {% for data in medicines %}
+            <tbody>
+                <tr>
+                    <td scope='row'>{{ data["medName"]}}</td>
+                    <td>{{ data["qty"]}}</td>
+                    <td>{{ data["rate"]}}</td>
+                    <td>{{ data["amount"]}}</td>
+
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+</form>
+</div>
+<h3>ADD new Medicines </h3>
+<div>
+    <form name="issue_medicine" action="" method="post" novalidate>
+        {{ form_med.hidden_tag() }}
+<table>        
+    <thead>
+        <tr>
+            <th scope="col">Medicine name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Amount</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        
+        <tr>
+            {% if form_med.medicineName.errors %}
+                <td>{{ form_med.medicineName(placeholder= form_med.medicineName.errors )}}</td>
+            {% else %}
+               <td>{{ form_med.medicineName }}</td>
+            {% endif %}  
+
+            {% if form_med.medicineQty.errors %}
+                <td>{{ form_med.medicineQty(placeholder= form_med.medicineQty.errors )}}</td>
+            {% else %}
+               <td>{{ form_med.medicineQty }}</td>
+            {% endif %}
+
+            <td>{{ form_med.medicineRate }}</td>
+            <td>{{ form_med.medicineAmount }}</td>
+            <td>{{ form_med.getRate() }}</td>
+            <td>{{ form_med.addMedicine() }}</td>
+        
+        </tr>
+        
+    </tbody>
+</table>
+{{form_med.update()}}
+
+</form>
+</div>
+{% else %}
+<div class="alert-alert-danger">
+    <p> <a href="{{ url_for('login') }}" >Please Login First </a>
+    <br>Note: Only Pharmacist can  manage the medicines issued to the patients</p>
+  </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{%block content %}
+{% if session['userId'] %}
+<div class="alert-alert-danger">
+    <p>Do you want to logout? <a href="{{ url_for('logout') }}" >Logout</a></p>
+  </div>
+{% else %}
+	<div class="login" id="login">
+		<form name="login" action="" method="post" novalidate>
+			{{ form.hidden_tag() }}
+
+			<p>
+				<label>{{ form.userId.label }}</label>
+				{{ form.userId(size=35) }}
+				{% for error in form.userId.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+			</p>
+			<p>
+				<label>{{ form.password.label }}</label>
+				{{ form.password(size=15) }}
+				{% for error in form.password.errors %}
+					<span class="error-message">{{ error }}</span>
+				{% endfor %}
+			</p>
+
+			<p>
+				{{ form.submit() }}
+			</p>
+
+		</form>
+
+	</div>
+{% endif %}
+{%endblock %}	
